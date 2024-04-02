@@ -1,0 +1,146 @@
+#include <iostream>
+using namespace std;
+class Menu
+{
+private:
+	int tamanio, tamanio2;
+	string cadena1, cadena2;
+
+
+public:
+	Menu(int,int , string, string);
+	~Menu();
+	void comparacion();
+	void intercambiar();
+	int longitud();
+	void contarvocales();
+	void sacar_substr(int);
+	void invertirfrase();
+	void encontrar_caracter();
+};
+#include "Menu.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+Menu::Menu(int t,int t2, string c1, string c2) {
+	tamanio = t;
+	tamanio2 = t2;
+	cadena1 = c1;
+	cadena2 = c2;
+}
+Menu::~Menu(){}
+int Menu::longitud() {
+	
+	return tamanio;
+}
+void Menu::comparacion() {
+	if(cadena1.compare(cadena2) == 0){
+		cout << "Los datos coinciden" << endl;
+	}
+	else {
+		cout << cadena1 << " es diferente que " << cadena2 << endl;
+
+
+	}
+}
+void Menu::contarvocales() {
+	int contador = 0;
+	for (int i = 0; i < tamanio; i++) {
+		if(cadena1.at(i) == 'a' || cadena1.at(i) == 'e' || cadena1.at(i) == 'i' || cadena1.at(i) == 'o' || cadena1.at(i) == 'u'){
+			contador++;
+		}
+	}
+	cout << "La cantidad de vocales es: " << contador;
+}
+void Menu::sacar_substr(int posicion) {
+	cout << "Ingrese la posicion en la que deseea extrar el substring: ";
+	cin >> posicion;
+	cout << cadena1.substr(posicion, tamanio - posicion);
+	cin.ignore();
+
+}
+void Menu::intercambiar() {
+	cout << "Intercambiar variables"<<endl;
+	cadena1.swap(cadena2);
+	cout << cadena1;
+	cout << cadena2;
+}
+void Menu::encontrar_caracter() {
+	cout << cadena2.find(' ');
+	
+	for(int i = 0; i<tamanio2; i++){
+		if (cadena2.at(i) == ' ') {
+			cout << "Existe un espacio en: " << i << endl;
+		}
+	}
+}
+void Menu::invertirfrase() {
+	string aux2;
+	char aux;
+	aux2 = cadena1;
+	for (int i = 0; i < tamanio/2; i++) {
+		aux = cadena1[i];
+		cadena1[i] = cadena1[tamanio - 1 - i];
+		cadena1[tamanio - 1 - i] = aux;
+
+	}
+	cout << "La cadena invertida es: " << cadena1 << endl;
+
+}
+#include "Menu.h"
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string nombre1, nombre2;
+    int largo, largo2, posicion, resp; posicion = 0;
+    cout << endl << "Ingrese un nombre: ";
+    getline(cin, nombre1);
+    largo = nombre1.length();
+    cout << endl << "Redigite el nombre: ";
+    getline(cin, nombre2);
+    largo2 = nombre2.length();
+    Menu goku(largo, largo2, nombre1, nombre2);
+    cout << "Menu" << endl;
+    cout << "1. Longitud de una cadena" << endl;
+    cout << "2. Comparacion" << endl;
+    cout << "3. Contar vocales" << endl;
+    cout << "4. Sacar un substring" << endl;
+    cout << "5. Intercambiar" << endl;
+    cout << "6. Encontrar caracteres" << endl;
+    cout << "7. Invertir la frase" << endl;
+    cout << "Que desea obtener?: "; cin >> resp;
+    switch(resp){
+    case 1:
+        cout << "La longitud es: " << goku.longitud();
+        break;
+    case 2:
+        goku.comparacion();
+        break;
+    case 3:
+        goku.contarvocales();
+        break;
+    case 4:
+        goku.sacar_substr(posicion);
+        break;
+    case 5:
+        goku.intercambiar();
+        break;
+    case 6:
+        goku.encontrar_caracter();
+        break;
+    case 7:
+        goku.invertirfrase();
+        break;
+    default:
+        cout << "Ingrese una opcion valida" << endl;
+        break;
+    }
+    
+    
+        
+    
+
+}
